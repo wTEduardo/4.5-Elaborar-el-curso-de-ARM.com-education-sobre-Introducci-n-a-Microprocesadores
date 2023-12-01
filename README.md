@@ -25,6 +25,9 @@ Trabajos U3
 Estudiante:
 Eduardo Alberto Garcia Pineda 20212407
 
+<p align=center>
+<pre>
+
 # 1.1 Los componentes básicos de una computadora personal
 
 Componentes esenciales de una computadora y cómo interactúan entre sí:

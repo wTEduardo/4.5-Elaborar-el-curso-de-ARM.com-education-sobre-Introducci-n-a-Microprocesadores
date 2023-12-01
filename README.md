@@ -1,4 +1,4 @@
-<p>
+<pre>
 <p align=center>
 
 Tecnológico Nacional de México

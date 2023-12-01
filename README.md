@@ -29,8 +29,6 @@ Eduardo Alberto Garcia Pineda 20212407
 
 </pre>
 
-<pre>
-
 # 1.1 Los componentes básicos de una computadora personal
 
 Componentes esenciales de una computadora y cómo interactúan entre sí:

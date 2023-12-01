@@ -20,6 +20,8 @@ M.C. Rene Solis Reyes
 Unidad:
 3
 
+	<p align=center>
+
 <pre>
 
 # 1.1 Los componentes básicos de una computadora personal

@@ -25,7 +25,11 @@ Trabajos U3
 Estudiante:
 Eduardo Alberto Garcia Pineda 20212407
 
-</p>
+	</p>
+
+</pre>
+
+<pre>
 
 # 1.1 Los componentes básicos de una computadora personal
 

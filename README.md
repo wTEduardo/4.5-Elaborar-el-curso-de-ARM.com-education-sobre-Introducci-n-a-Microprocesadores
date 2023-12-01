@@ -1,4 +1,6 @@
-<p align=center>
+<pre>
+
+	<p align=center>
 
 Tecnológico Nacional de México
 Instituto Tecnológico de Tijuana
@@ -17,12 +19,6 @@ M.C. Rene Solis Reyes
 
 Unidad:
 3
-
-Título del trabajo:
-Trabajos U3
-
-Estudiante:
-Eduardo Alberto Garcia Pineda 20212407
 
 # 1.1 Los componentes básicos de una computadora personal
 

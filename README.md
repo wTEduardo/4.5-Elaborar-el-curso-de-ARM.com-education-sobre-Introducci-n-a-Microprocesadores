@@ -1,4 +1,4 @@
-<pre>
+<p>
 
 	<p align=center>
 

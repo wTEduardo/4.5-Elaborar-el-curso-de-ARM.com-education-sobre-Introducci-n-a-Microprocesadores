@@ -40,3 +40,49 @@ Antes de que la ALU pueda ejecutar sus instrucciones, estas deben ser decodifica
 
 Esta implementación del conjunto de instrucciones del procesador facilita que la ALU utilice la circuitería correspondiente con un solo bit alto.
 
+# 2.2 Operaciones aritméticas y lógicas
+
+Las operaciones aritméticas son quizás las más simples de considerar y generalmente las asociamos con operaciones "matemáticas", como el semisumador que suma dos bits. Estas operaciones son bloques de construcción de circuitos simples que se pueden combinar para formar circuitos más complejos. En este caso, dos circuitos para sumar dos bits cada uno se han combinado para sumar dos bits más un bit de acarreo. Estos, a su vez, pueden combinarse para producir un circuito que sume un byte completo.
+
+Existen dos tipos principales de operaciones lógicas a nivel de bits. El primero está directamente relacionado con las operaciones booleanas que quizás hayas encontrado antes, como AND, OR, NOT, y similares. Estas operaciones tienen diversas funciones, como invertir un binario positivo mediante una operación NOT en cada bit (conocido como complemento a uno). Esto forma parte del proceso de creación de un entero negativo en binario de complemento a dos.
+
+Un procesador almacena el estado de operaciones anteriores en un registro de estado. Por ejemplo, si una suma es demasiado grande para almacenarse, se almacena un indicador de desbordamiento como 1. Un AND se puede utilizar para identificar el valor de un solo bit en el registro de estado, como el indicador de desbordamiento.
+
+El otro tipo de operación lógica es un desplazamiento (shift). Hay varios tipos de desplazamientos; un desplazamiento aritmético conserva el bit más significativo (el de mayor valor de posición). Cada desplazamiento a la derecha es equivalente a dividir (o desplazar a la derecha) por dos. Un desplazamiento aritmético a la izquierda es lo opuesto, equivalente a multiplicar por dos. Un desplazamiento lógico funciona de la misma manera pero no conserva el bit de signo, por lo que es ideal para enteros sin signo.
+
+Aunque realizar cálculos mediante desplazamientos es una manera rápida y simple para la CPU, se debe tener cuidado para no perder precisión ya que los contenidos binarios pueden salirse del registro.
+
+# 2.3 Entrada, proceso y salida
+
+Todos los ordenadores se rigen por un modelo conocido como IPO, o entrada, procesamiento y salida. Toman entrada, a menudo del usuario haciendo clic con el ratón o escribiendo en el teclado. La computadora, ya sea en la unidad de escritorio o dentro de la computadora portátil, procesa estos clics y toques para llevar a cabo las instrucciones del usuario, y luego la salida aparece en la pantalla, en los auriculares, o si eres realmente anticuado, en la impresora. Incluso los microprocesadores en los dispositivos más pequeños siguen el mismo modelo. La entrada puede provenir de un sensor, puede ser el microprocesador más pequeño, y la salida puede ser luces LED, zumbadores o incluso solo algunos datos enviados a un servidor en algún lugar.
+
+El modelo IPO también es fundamental para el desarrollo de software y es un enfoque común en el análisis de sistemas: si un software tiene definidas sus entradas y salidas, y el desarrollador produce los procesos que hacen que las entradas generen las salidas correctas, entonces el sistema está haciendo lo que debe hacer.
+
+Esto sigue siendo cierto a la escala más pequeña. Considera este fragmento de código ensamblador de un procesador conceptual. El código ensamblador es simplemente código máquina: las instrucciones se representan mediante mnemotécnicos en lugar de números binarios para que sea más fácil de leer para los humanos.
+
+Esta instrucción se puede leer como "sumar el contenido del registro AH y el registro BH y almacenar el resultado en el registro BH". Las entradas son los operandos, los registros AH y BH. El proceso es sumar los dos, por lo que se instruye a la ALU a llevar a cabo ese proceso mediante el opcode ADD. Y la salida es, por supuesto, la suma de los contenidos de AH y BH, que en este caso se almacena nuevamente en el registro BH.
+
+Es importante saber que algunas operaciones pueden llevar a cabo una tarea completa, pero algunas tareas pueden requerir múltiples operaciones. La atención a instrucciones simples de ciclo único o instrucciones más complejas, a menudo de varios ciclos, es la principal diferencia entre las arquitecturas de CPU RISC y CISC.
+
+# 3.1 El ciclo de recuperación, decodificación y ejecución y el impacto de las interrupciones
+
+Desde el momento en que se enciende hasta el momento en que se apaga, una computadora sigue el ciclo fetch-decode-execute, o FDE. Lo que sucede dentro de este ciclo depende de la arquitectura de la computadora.
+
+La arquitectura Von Neumann, una de las más conocidas, tiene una única unidad de memoria y una única unidad de control. La computadora sigue un ciclo FDE de tres pasos: fetch (obtención), decode (decodificación) y execute (ejecución). En este modelo, el programa se inicia con el contador de programa (PC) establecido en la dirección de la primera instrucción. Luego, la dirección se envía a través del bus de direcciones, los datos se obtienen del bus de datos y se colocan en el registro de datos de memoria (MDR) y, finalmente, se copian en el registro de instrucciones actual (CIR). Luego sigue la etapa de decodificación, donde el módulo de decodificación dentro de la unidad de control (CU) decodifica la instrucción. En la etapa de ejecución, el opcode y los operandos se envían a las partes relevantes del procesador para su procesamiento.
+
+Contrastando con esto está la arquitectura Harvard, que tiene dos unidades de control comunicándose con dos espacios de memoria separados, uno para instrucciones y otro para datos. Cada unidad de memoria tiene su propio bus de direcciones y bus de datos. Aunque la arquitectura Harvard tiene ventajas de velocidad, la arquitectura Von Neumann, con su memoria compartida, es más flexible y está asociada con las computadoras de propósito general.
+
+En ambos casos, puede haber interrupciones en el ciclo. Los dispositivos hardware o el software pueden requerir atención, lo que lleva a una interrupción. Cuando esto sucede, el procesador almacena los códigos de estado actuales, el contenido de los registros y el valor del contador de programa en una pila y maneja el nuevo proceso que necesita llevarse a cabo. Luego, los valores se copian nuevamente desde la pila y el procesamiento continúa.
+
+Algunos procesadores, como los procesadores RISC (conjunto de instrucciones reducido), tienen un ciclo de cinco etapas, donde la obtención, decodificación y ejecución son similares al ciclo Von Neumann, pero la lectura y escritura de datos desde y hacia la memoria se realizan en fases separadas.
+
+# 3.2 Una variedad de factores que afectan el rendimiento de una CPU
+
+Es un error común pensar que el rendimiento se trata únicamente de velocidad. Se compara el rendimiento de una computadora con el movimiento de autos en una carretera: la velocidad está dictada por la carretera, de la misma manera en que las instrucciones están dictadas por la circuitería por la que pasan. El "clock speed" en computadoras se refiere al número de pulsos que produce un reloj cada segundo (medido en hertzios), lo cual representa la cantidad de ciclos de instrucción que se activan en ese período de tiempo, no la velocidad a la que van las señales en sí mismas.
+
+Muchos procesadores son ahora multicore, lo que significa que tienen múltiples unidades de procesamiento dentro de la CPU. Aunque algunas partes, como la memoria y la mayoría de los buses, son compartidas, la parte "núcleo" de la CPU que hemos discutido anteriormente se duplica, permitiendo el paralelismo, es decir, la ejecución de múltiples procesos al mismo tiempo. La eficacia del paralelismo depende del tipo de aplicación: algunas se benefician mucho de tener múltiples núcleos, mientras que otras no.
+
+El concepto de "cache" es como una ubicación temporal de fácil acceso que agiliza la recuperación de información. La cache en una CPU es una memoria muy rápida que se utiliza para almacenar instrucciones y datos que se utilizan con frecuencia, siendo más rápida que la RAM. La cache se organiza en niveles, siendo el nivel 1 el más rápido y cercano al núcleo de la CPU, y el nivel 3 el más lento pero más grande.
+
+La medición del rendimiento de una CPU implica factores como el número de instrucciones a ejecutar, los ciclos por instrucción, la duración del ciclo de reloj y la frecuencia del reloj. También se puede mejorar la ejecución mediante la descarga de parte del procesamiento a coprocesadores especializados, como la unidad de punto flotante que puede manejar números reales de manera más rápida que la ALU principal.
+

@@ -1,6 +1,4 @@
-<p>
-
-	<p align=center>
+<p align=center>
 
 Tecnológico Nacional de México
 Instituto Tecnológico de Tijuana
@@ -25,8 +23,6 @@ Trabajos U3
 
 Estudiante:
 Eduardo Alberto Garcia Pineda 20212407
-
-</>
 
 # 1.1 Los componentes básicos de una computadora personal
 

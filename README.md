@@ -26,7 +26,7 @@ Estudiante:
 Eduardo Alberto Garcia Pineda 20212407
 
 <p align=center>
-<pre>
+</p>
 
 # 1.1 Los componentes básicos de una computadora personal
 

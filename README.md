@@ -1,3 +1,29 @@
+<p align=center>
+
+Tecnológico Nacional de México
+Instituto Tecnológico de Tijuana
+
+Departamento de Sistemas y Computación
+Ingeniería en Sistemas Computacionales
+
+Semestre:
+Agosto - Diciembre 2023
+
+Materia:
+Lenguajes de interfaz
+
+Docente:
+M.C. Rene Solis Reyes 
+
+Unidad:
+3
+
+Título del trabajo:
+Trabajos U3
+
+Estudiante:
+Eduardo Alberto Garcia Pineda 20212407
+
 # 1.1 Los componentes básicos de una computadora personal
 
 Componentes esenciales de una computadora y cómo interactúan entre sí:
